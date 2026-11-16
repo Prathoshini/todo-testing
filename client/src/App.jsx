@@ -98,6 +98,34 @@ function App() {
         }
     };
 
+    // DELETE ALL TODOS
+const handleDeleteAll = async () => {
+
+    const confirmDelete = window.confirm(
+        "Are you sure you want to delete all todos?"
+    );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    try {
+
+        await axios.delete(`${API}/delete-all`);
+
+        setTodos([]);
+
+        setError("");
+
+        alert("All todos deleted successfully!");
+
+    } catch (err) {
+
+        setError("Unable to delete all todos");
+
+    }
+};
+
     // MARK TODO AS COMPLETED
     const handleToggle = async (todo) => {
 
@@ -175,7 +203,20 @@ function App() {
 
             {/* TODO LIST */}
 
-            <h2>My Tasks ({todos.length})</h2>
+           <div className="task-header">
+
+    <h2>My Tasks ({todos.length})</h2>
+
+    {todos.length > 0 && (
+        <button
+            className="clear-all"
+            onClick={handleDeleteAll}
+        >
+            Clear All Todos
+        </button>
+    )}
+
+</div>
 
             {todos.length === 0 ? (
 
@@ -226,6 +267,8 @@ function App() {
                             </button>
 
                         </div>
+
+                        
 
                     </div>
 

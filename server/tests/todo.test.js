@@ -141,4 +141,29 @@ describe("Todo API Testing", () => {
 
     });
 
+
+    
+//delete all todos
+    test("Should delete all todos", async () => {
+
+    await Todo.create([
+        { title: "Learn React" },
+        { title: "Learn Node" },
+        { title: "Learn Jest" }
+    ]);
+
+    const response = await request(app)
+        .delete("/api/todos/delete-all");
+
+    expect(response.statusCode).toBe(200);
+
+    expect(response.body.message)
+        .toBe("All todos deleted successfully");
+
+    const todos = await Todo.find();
+
+    expect(todos.length).toBe(0);
+
+});
+
 });

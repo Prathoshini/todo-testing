@@ -174,4 +174,32 @@ button:hover {
     .actions {
         width: 100%;
     }
+    
+}
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 0 15px;
+}
+
+.task-header h2 {
+    margin: 0;
+}
+
+.clear-all {
+    background: #dc2626;
+    padding: 10px 15px;
+}
+
+.clear-all:hover {
+    background: #b91c1c;
+}
+
+@media (max-width: 450px) {
+    .task-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
